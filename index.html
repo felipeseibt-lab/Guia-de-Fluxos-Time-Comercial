@@ -8,375 +8,706 @@
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
   :root {
-    --bg: #f7f6f2;
-    --surface: #ffffff;
-    --surface2: #f2f0ea;
-    --border: rgba(0,0,0,0.1);
-    --border-strong: rgba(0,0,0,0.18);
-    --text: #1a1917;
-    --text-muted: #6b6a66;
-    --text-faint: #a09e99;
-    --teal: #1D9E75;
-    --teal-light: #E1F5EE;
-    --teal-border: #9FE1CB;
-    --amber: #EF9F27;
-    --amber-light: #FAEEDA;
-    --amber-dark: #633806;
-    --blue: #185FA5;
-    --blue-light: #E6F1FB;
-    --blue-border: #85B7EB;
-    --purple-light: #EEEDFE;
-    --purple: #3C3489;
-    --red-light: #FCEBEB;
-    --red: #A32D2D;
-    --radius: 8px;
-    --radius-lg: 12px;
-    --mono: 'JetBrains Mono', monospace;
-    --sans: 'DM Sans', sans-serif;
+    --bg: #f7f6f2; --surface: #ffffff; --surface2: #f2f0ea;
+    --border: rgba(0,0,0,0.1); --border-strong: rgba(0,0,0,0.18);
+    --text: #1a1917; --text-muted: #6b6a66; --text-faint: #a09e99;
+    --teal: #1D9E75; --teal-light: #E1F5EE; --teal-border: #9FE1CB;
+    --amber: #EF9F27; --amber-light: #FAEEDA; --amber-dark: #633806;
+    --blue: #185FA5; --blue-light: #E6F1FB; --blue-border: #85B7EB;
+    --purple-light: #EEEDFE; --purple: #3C3489;
+    --red-light: #FCEBEB; --red: #A32D2D;
+    --radius: 8px; --radius-lg: 12px;
+    --mono: 'JetBrains Mono', monospace; --sans: 'DM Sans', sans-serif;
   }
-
-  body {
-    font-family: var(--sans);
-    background: var(--bg);
-    color: var(--text);
-    min-height: 100vh;
-    padding: 2rem 1rem 4rem;
-  }
-
-  .page-wrap { max-width: 860px; margin: 0 auto; }
+  body { font-family: var(--sans); background: var(--bg); color: var(--text); min-height: 100vh; padding: 2rem 1rem 4rem; }
+  .page-wrap { max-width: 900px; margin: 0 auto; }
 
   /* HEADER */
-  .page-header {
-    display: flex; align-items: flex-start; justify-content: space-between;
-    margin-bottom: 2.5rem; padding-bottom: 1.5rem;
-    border-bottom: 1px solid var(--border);
-  }
+  .page-header { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 2.5rem; padding-bottom: 1.5rem; border-bottom: 1px solid var(--border); }
   .logo-area { display: flex; align-items: center; gap: 12px; }
   .logo-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--teal); flex-shrink: 0; margin-top: 5px; }
-  .page-title { font-size: 22px; font-weight: 500; letter-spacing: -0.3px; line-height: 1.2; }
+  .page-title { font-size: 22px; font-weight: 500; letter-spacing: -0.3px; }
   .header-meta { text-align: right; font-size: 12px; color: var(--text-faint); font-family: var(--mono); }
 
   /* SECTION */
   .section { margin-bottom: 2rem; }
-  .section-label {
-    font-size: 11px; font-weight: 500; letter-spacing: .1em;
-    text-transform: uppercase; color: var(--teal);
-    display: flex; align-items: center; gap: 8px;
-    margin-bottom: 8px;
-  }
+  .section-label { font-size: 11px; font-weight: 500; letter-spacing: .1em; text-transform: uppercase; color: var(--teal); display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
   .section-label::after { content: ''; flex: 1; height: .5px; background: var(--teal-border); }
 
   /* ROWS */
-  .rows-wrap {
-    border: 1px solid var(--border);
-    border-radius: var(--radius-lg);
-    overflow: hidden;
-    background: var(--surface);
-  }
+  .rows-wrap { border: 1px solid var(--border); border-radius: var(--radius-lg); overflow: hidden; background: var(--surface); }
   .item-wrap { border-bottom: .5px solid var(--border); }
   .item-wrap:last-child { border-bottom: none; }
-
-  .item-row {
-    display: flex; align-items: center; gap: 10px;
-    padding: 12px 16px;
-    background: var(--surface);
-  }
-
+  .item-row { display: flex; align-items: center; gap: 10px; padding: 12px 16px; background: var(--surface); }
   .item-num { font-size: 12px; color: var(--text-faint); font-family: var(--mono); min-width: 20px; }
-  .item-name { flex: 1; font-size: 14px; color: var(--text); font-weight: 400; }
+  .item-name { flex: 1; font-size: 14px; color: var(--text); }
+  .item-tag { font-size: 11px; padding: 2px 8px; border-radius: 99px; font-family: var(--mono); margin-right: 2px; white-space: nowrap; }
+  .tag-tms { background: var(--blue-light); color: var(--blue); border: .5px solid var(--blue-border); }
+  .tag-opmdm { background: var(--teal-light); color: #0F6E56; border: .5px solid var(--teal-border); }
   .item-actions { display: flex; align-items: center; gap: 6px; flex-shrink: 0; }
 
   /* FLAG */
-  .flag-btn {
-    font-size: 12px; padding: 4px 12px; border-radius: 99px;
-    border: .5px solid var(--border-strong); cursor: pointer;
-    background: transparent; color: var(--text-muted);
-    display: flex; align-items: center; gap: 5px;
-    font-family: var(--sans); transition: all .15s;
-    white-space: nowrap;
-  }
+  .flag-btn { font-size: 12px; padding: 4px 12px; border-radius: 99px; border: .5px solid var(--border-strong); cursor: pointer; background: transparent; color: var(--text-muted); display: flex; align-items: center; gap: 5px; font-family: var(--sans); transition: all .15s; white-space: nowrap; }
   .flag-btn svg { width: 12px; height: 12px; flex-shrink: 0; }
-  .flag-btn:hover { background: var(--amber-light); border-color: var(--amber); color: var(--amber-dark); }
-  .flag-btn.active { background: var(--amber-light); border-color: var(--amber); color: var(--amber-dark); }
+  .flag-btn:hover, .flag-btn.active { background: var(--amber-light); border-color: var(--amber); color: var(--amber-dark); }
 
   /* DOC PANEL */
   .doc-panel { display: none; border-left: 3px solid var(--amber); background: #fffdf7; }
-  .doc-panel.open { display: block; animation: slideDown .2s ease; }
-  @keyframes slideDown { from { opacity: 0; transform: translateY(-4px); } to { opacity: 1; transform: translateY(0); } }
-
+  .doc-panel.open { display: block; animation: sd .2s ease; }
+  @keyframes sd { from { opacity:0; transform:translateY(-4px); } to { opacity:1; transform:translateY(0); } }
   .doc-inner { padding: 22px 24px 24px; font-size: 13px; line-height: 1.75; color: var(--text); }
   .doc-block { margin-bottom: 22px; }
   .doc-block:last-child { margin-bottom: 0; }
-
-  .doc-h {
-    font-size: 11px; font-weight: 500; letter-spacing: .09em;
-    text-transform: uppercase; color: var(--amber); margin-bottom: 10px;
-    display: flex; align-items: center; gap: 6px;
-  }
+  .doc-h { font-size: 11px; font-weight: 500; letter-spacing: .09em; text-transform: uppercase; color: var(--amber); margin-bottom: 10px; display: flex; align-items: center; gap: 6px; }
   .doc-h svg { width: 13px; height: 13px; flex-shrink: 0; }
-
-  .doc-p { color: var(--text); margin-bottom: 8px; }
+  .doc-p { margin-bottom: 8px; }
   .doc-p:last-child { margin-bottom: 0; }
   .doc-p strong { font-weight: 500; }
   .doc-divider { height: .5px; background: rgba(0,0,0,.08); margin: 20px 0; }
-
-  code {
-    font-family: var(--mono); font-size: 11.5px;
-    background: var(--blue-light); color: var(--blue);
-    padding: 1px 5px; border-radius: 4px;
-  }
-
+  code { font-family: var(--mono); font-size: 11.5px; background: var(--blue-light); color: var(--blue); padding: 1px 5px; border-radius: 4px; }
   .doc-table { width: 100%; border-collapse: collapse; font-size: 12.5px; margin-top: 6px; }
-  .doc-table th {
-    text-align: left; padding: 6px 10px;
-    background: var(--surface2); color: var(--text-muted);
-    font-weight: 500; border-bottom: .5px solid var(--border-strong);
-    font-size: 11px; letter-spacing: .03em;
-  }
-  .doc-table td { padding: 7px 10px; border-bottom: .5px solid var(--border); vertical-align: top; color: var(--text); }
+  .doc-table th { text-align: left; padding: 6px 10px; background: var(--surface2); color: var(--text-muted); font-weight: 500; border-bottom: .5px solid var(--border-strong); font-size: 11px; }
+  .doc-table td { padding: 7px 10px; border-bottom: .5px solid var(--border); vertical-align: top; }
   .doc-table tr:last-child td { border-bottom: none; }
   .doc-table tr:hover td { background: #fafaf8; }
-
   .tag { display: inline-block; font-size: 11px; padding: 1px 7px; border-radius: 4px; font-family: var(--mono); }
   .tag-tbl { background: var(--blue-light); color: var(--blue); }
-  .tag-ai  { background: var(--purple-light); color: var(--purple); }
-
+  .tag-mongo { background: var(--teal-light); color: #0F6E56; }
+  .tag-ai { background: var(--purple-light); color: var(--purple); }
   .step-list { list-style: none; padding: 0; margin: 4px 0 0; counter-reset: steps; }
   .step-list li { counter-increment: steps; display: flex; gap: 10px; margin-bottom: 7px; align-items: flex-start; }
-  .step-list li::before {
-    content: counter(steps);
-    min-width: 20px; height: 20px; border-radius: 50%;
-    background: var(--amber); color: var(--amber-dark);
-    font-size: 11px; font-weight: 500; font-family: var(--mono);
-    display: flex; align-items: center; justify-content: center;
-    flex-shrink: 0; margin-top: 2px;
-  }
+  .step-list li::before { content: counter(steps); min-width: 20px; height: 20px; border-radius: 50%; background: var(--amber); color: var(--amber-dark); font-size: 11px; font-weight: 500; font-family: var(--mono); display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 2px; }
+
+  /* DEPS */
+  .deps-box { background: var(--surface2); border: .5px solid var(--border-strong); border-radius: var(--radius); padding: 12px 14px; margin-top: 6px; }
+  .dep-item { display: flex; gap: 10px; align-items: flex-start; margin-bottom: 8px; }
+  .dep-item:last-child { margin-bottom: 0; }
+  .dep-code { font-family: var(--mono); font-size: 11px; background: var(--amber-light); color: var(--amber-dark); border: .5px solid var(--amber); padding: 2px 7px; border-radius: 4px; white-space: nowrap; flex-shrink: 0; }
+  .dep-desc { font-size: 12.5px; color: var(--text); line-height: 1.6; }
+  .dep-desc strong { font-weight: 500; }
 
   /* FOOTER */
-  .footer {
-    margin-top: 3rem; padding-top: 1.5rem; border-top: .5px solid var(--border);
-    font-size: 12px; color: var(--text-faint);
-    display: flex; align-items: center; justify-content: space-between;
-  }
+  .footer { margin-top: 3rem; padding-top: 1.5rem; border-top: .5px solid var(--border); font-size: 12px; color: var(--text-faint); display: flex; align-items: center; justify-content: space-between; }
 
   @media (max-width: 600px) {
     .page-header { flex-direction: column; gap: 8px; }
     .header-meta { text-align: left; }
     .doc-table { font-size: 12px; }
+    .item-row { flex-wrap: wrap; }
   }
 </style>
 </head>
 <body>
 <div class="page-wrap">
-
   <header class="page-header">
     <div class="logo-area">
       <div class="logo-dot"></div>
-      <div>
-        <div class="page-title">Guia de Fluxos · Laisa</div>
-      </div>
+      <div><div class="page-title">Guia de Fluxos · Laisa</div></div>
     </div>
-    <div class="header-meta">
-      Atualizado em <span id="gen-date"></span><br>
-      Lincros Automação
-    </div>
+    <div class="header-meta">Atualizado em <span id="gen-date"></span><br>Lincros Automação</div>
   </header>
-
   <div id="sections-root"></div>
-
   <footer class="footer">
     <span>Clique em "Documentação" para ver os detalhes de cada fluxo</span>
-    <span>v1.0</span>
+    <span>v2.0</span>
   </footer>
-
 </div>
 <script>
-document.getElementById('gen-date').textContent = new Date().toLocaleDateString('pt-BR', { day: '2-digit', month: '2-digit', year: 'numeric' });
-
+document.getElementById('gen-date').textContent = new Date().toLocaleDateString('pt-BR',{day:'2-digit',month:'2-digit',year:'numeric'});
 const flagIcon = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" y1="22" x2="4" y2="15"/></svg>`;
 
-const FIM_ROTA_DOC = `<div class="doc-inner">
+/* ═══════════════════════════════════════════════════════
+   DOC CONTENTS
+═══════════════════════════════════════════════════════ */
+
+const DOC_FIM_ROTA = `<div class="doc-inner">
   <div class="doc-block">
     <div class="doc-h"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>Objetivo do fluxo</div>
     <p class="doc-p">O fluxo <strong>Fim de Rota</strong> monitora automaticamente se o motorista finalizou a viagem no aplicativo após concluir as entregas. Quando detecta que as entregas foram realizadas mas a rota ainda está em aberto no sistema, ele aciona a IA <strong>Laisa</strong> para notificar o motorista via WhatsApp — evitando que rotas fiquem com status incorreto no TMS e prejudiquem os indicadores do cliente.</p>
-    <p class="doc-p">O fluxo roda a cada <strong>15 minutos</strong> dentro do horário comercial <strong>(07h–20h)</strong>. Fora desse horário, o scheduler é ignorado automaticamente.</p>
+    <p class="doc-p">O fluxo roda a cada <strong>15 minutos</strong> dentro do horário comercial <strong>(07h–20h)</strong>.</p>
   </div>
   <div class="doc-divider"></div>
   <div class="doc-block">
     <div class="doc-h"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>Banco de dados</div>
     <p class="doc-p">Credencial: <code>Torre C</code> — banco <code>HBMDM_FORTLEV</code>, schema <code>OPMDM</code></p>
     <table class="doc-table">
-      <tr><th>Tabela</th><th>Para que serve no fluxo</th></tr>
+      <tr><th>Tabela</th><th>Para que serve</th></tr>
       <tr><td><code>TB_ROTA</code></td><td>Dados principais da rota: placa, motorista, unidade, situação</td></tr>
-      <tr><td><code>TB_ENTREGA</code></td><td>Entregas vinculadas à rota — realizadas, devolvidas e pendentes</td></tr>
+      <tr><td><code>TB_ENTREGA</code></td><td>Entregas vinculadas — realizadas, devolvidas e pendentes</td></tr>
       <tr><td><code>TB_MOTORISTA</code></td><td>Nome do motorista para personalizar a mensagem</td></tr>
       <tr><td><code>TB_DISPOSITIVO</code></td><td>Telefone do dispositivo para envio do WhatsApp</td></tr>
-      <tr><td><code>TB_UNIDADE_NEGOCIO</code></td><td>Dados da unidade de negócio (filial) associada à rota</td></tr>
-      <tr><td><code>TB_TRATAMENTO_EVENTO</code></td><td>Registra e controla cada evento disparado — garante idempotência (sem duplicatas)</td></tr>
-      <tr><td><code>TB_EVENTO_ACAO</code></td><td>Histórico de cada ação realizada dentro de um tratamento</td></tr>
-      <tr><td><code>TB_MENSAGEM</code></td><td>Armazena todas as mensagens trocadas entre a Laisa e o motorista</td></tr>
-      <tr><td><code>TB_CLIENTE</code></td><td>Nome e código do cliente destinatário (usado no e-mail de devolução)</td></tr>
-      <tr><td><code>TB_MOTIVO_DEVOLUCAO</code></td><td>Descrição do motivo da devolução informado pelo motorista no app</td></tr>
+      <tr><td><code>TB_TRATAMENTO_EVENTO</code></td><td>Registra e controla cada evento disparado (idempotência)</td></tr>
+      <tr><td><code>TB_EVENTO_ACAO</code></td><td>Histórico de ações dentro de cada tratamento</td></tr>
+      <tr><td><code>TB_MENSAGEM</code></td><td>Armazena todas as mensagens trocadas com o motorista</td></tr>
+      <tr><td><code>TB_CLIENTE</code></td><td>Nome e código do cliente destinatário (e-mail de devolução)</td></tr>
+      <tr><td><code>TB_MOTIVO_DEVOLUCAO</code></td><td>Motivo da devolução informado pelo motorista no app</td></tr>
     </table>
   </div>
   <div class="doc-divider"></div>
   <div class="doc-block">
-    <div class="doc-h"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>Consulta 1 — Buscar Rotas (gatilho principal)</div>
-    <p class="doc-p">Executada a cada 15 min pelo scheduler. Busca rotas que cumprem <strong>todos</strong> os critérios ao mesmo tempo:</p>
+    <div class="doc-h"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>Consulta principal — Buscar Rotas</div>
+    <p class="doc-p">Executada a cada 15 min. Busca rotas que atendam <strong>todos</strong> os critérios:</p>
     <table class="doc-table">
-      <tr><th>Campo / Filtro</th><th>O que significa para o negócio</th></tr>
-      <tr><td><code>CdSituacao = 2</code></td><td>Rota em andamento — motorista saiu mas ainda não finalizou no app</td></tr>
-      <tr><td><code>EntregasPrevistas = EntregasRealizadas</code></td><td>Todas as entregas programadas para aquela rota já foram realizadas</td></tr>
-      <tr><td><code>DevolucaoPendente &gt; 0</code></td><td>Existe ao menos uma devolução registrada que a central ainda não tratou</td></tr>
-      <tr><td><code>NrTelefone IS NOT NULL</code></td><td>O dispositivo tem telefone — sem ele não há como enviar o WhatsApp</td></tr>
-      <tr><td><code>NOT EXISTS TB_TRATAMENTO_EVENTO</code></td><td>Garante que a mesma rota não seja notificada duas vezes (idempotência)</td></tr>
-      <tr><td><code>StatusRota</code> (campo calculado)</td><td><code>EntregasFeitas</code> = tudo entregue · <code>DevolucaoPendente</code> = há devolução aberta · <code>RotaAndamento</code> = rota normal</td></tr>
-      <tr><td><code>@ModoTeste</code></td><td>Flag de desenvolvimento: quando ativo, redireciona todas as mensagens para o número do André em vez do motorista real</td></tr>
+      <tr><th>Filtro</th><th>Significado</th></tr>
+      <tr><td><code>CdSituacao = 2</code></td><td>Rota em andamento — motorista saiu mas não finalizou</td></tr>
+      <tr><td><code>EntregasPrevistas = EntregasRealizadas</code></td><td>Todas as entregas da rota foram concluídas</td></tr>
+      <tr><td><code>NrTelefone IS NOT NULL</code></td><td>Dispositivo tem telefone para envio do WhatsApp</td></tr>
+      <tr><td><code>NOT EXISTS TB_TRATAMENTO_EVENTO</code></td><td>Evita reenvio — rota ainda não foi notificada</td></tr>
+      <tr><td><code>StatusRota</code> (calculado)</td><td><code>EntregasFeitas</code> · <code>DevolucaoPendente</code> · <code>RotaAndamento</code></td></tr>
     </table>
   </div>
   <div class="doc-divider"></div>
   <div class="doc-block">
-    <div class="doc-h"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><polyline points="16 3 21 3 21 8"/><line x1="4" y1="20" x2="21" y2="3"/><polyline points="21 16 21 21 16 21"/><line x1="15" y1="15" x2="21" y2="21"/></svg>Divisão de caminhos — Switch "Status Entregas"</div>
-    <p class="doc-p">Após buscar as rotas, o N8N divide o processamento em dois caminhos distintos:</p>
+    <div class="doc-h"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>IA Laisa — Mensagem e ações possíveis</div>
+    <p class="doc-p">A IA gera mensagem personalizada via <strong>OpenRouter</strong>, envia pelo <strong>GUPSHUP</strong> (WhatsApp Business) e categoriza a resposta do motorista em uma das ações:</p>
     <table class="doc-table">
-      <tr><th>Caminho</th><th>Condição</th><th>O que acontece</th></tr>
-      <tr><td><strong>Entregas Concluídas</strong></td><td><code>StatusRota = EntregasFeitas</code></td><td>IA Laisa gera mensagem personalizada perguntando por que não finalizou no app</td></tr>
-      <tr><td><strong>Devolução Pendente</strong></td><td><code>StatusRota = DevolucaoPendente</code></td><td>Busca detalhes da devolução e envia e-mail HTML para a equipe da Torre</td></tr>
-    </table>
-  </div>
-  <div class="doc-divider"></div>
-  <div class="doc-block">
-    <div class="doc-h"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 9h6M9 12h6M9 15h4"/></svg>Consulta 2 — Buscar Devolução Pendente</div>
-    <p class="doc-p">Roda apenas no caminho de devolução. Busca os detalhes de cada entrega devolvida para compor o e-mail enviado à Torre:</p>
-    <table class="doc-table">
-      <tr><th>Campo retornado</th><th>Tabela de origem</th><th>Significado</th></tr>
-      <tr><td><code>CdRotaNegocio</code></td><td>TB_ROTA</td><td>Código da rota visível no sistema de negócio</td></tr>
-      <tr><td><code>NmCliente</code></td><td>TB_CLIENTE</td><td>Nome do destinatário que não recebeu a mercadoria</td></tr>
-      <tr><td><code>CdClienteNegocio</code></td><td>TB_CLIENTE</td><td>Código do cliente para identificação no sistema</td></tr>
-      <tr><td><code>DsMotivoDevolucao</code></td><td>TB_MOTIVO_DEVOLUCAO</td><td>Motivo informado pelo motorista ao registrar a devolução no app</td></tr>
-      <tr><td><code>DtPrimeiroApontamento</code></td><td>TB_ENTREGA</td><td>Data e hora em que o motorista registrou a devolução</td></tr>
-      <tr><td>Filtros aplicados</td><td>—</td><td><code>Iddevolvida=1</code> (devolvida) + <code>IdacaoDevolucao=0</code> (central não tratou) + <code>IdEntregaRealizada=1</code> (motorista chegou ao ponto)</td></tr>
-    </table>
-  </div>
-  <div class="doc-divider"></div>
-  <div class="doc-block">
-    <div class="doc-h"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>IA Laisa — Geração e envio da mensagem</div>
-    <p class="doc-p">No caminho de entregas concluídas, a IA recebe nome do motorista e placa do veículo e gera via <strong>OpenRouter</strong> uma mensagem personalizada em português informal, perguntando se ele está retornando ou esqueceu de finalizar. Assinada como <strong>Laisa</strong>.</p>
-    <p class="doc-p">A mensagem é enviada pelo <strong>GUPSHUP</strong> (WhatsApp Business API) e o sistema grava 3 registros:</p>
-    <table class="doc-table">
-      <tr><th>Tabela gravada</th><th>O que é registrado</th></tr>
-      <tr><td><span class="tag tag-tbl">TB_TRATAMENTO_EVENTO</span></td><td>Abre o tratamento com Status = 1 (Em andamento), Task = 'Fim de Rota'</td></tr>
-      <tr><td><span class="tag tag-tbl">TB_EVENTO_ACAO</span></td><td>Registra a ação "Notificação inicial enviada"</td></tr>
-      <tr><td><span class="tag tag-tbl">TB_MENSAGEM</span></td><td>Salva o texto exato da mensagem enviada ao motorista</td></tr>
-    </table>
-  </div>
-  <div class="doc-divider"></div>
-  <div class="doc-block">
-    <div class="doc-h"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 .49-3"/></svg>Loop de resposta do motorista (Webhook)</div>
-    <p class="doc-p">Quando o motorista responde via WhatsApp, um webhook recebe a mensagem e processa em 7 etapas:</p>
-    <ol class="step-list">
-      <li>Busca o tratamento ativo do motorista em <code>TB_TRATAMENTO_EVENTO</code> pelo número de telefone</li>
-      <li>Armazena a nova mensagem no <strong>Redis</strong> (buffer em tempo real para evitar processamento duplicado)</li>
-      <li>Aguarda 1 segundo — janela de deduplicação para mensagens enviadas em sequência rápida</li>
-      <li>Puxa todas as mensagens do Redis e verifica se a última corresponde à recebida agora</li>
-      <li>Monta histórico completo da conversa e envia para a <strong>IA Laisa</strong> analisar</li>
-      <li>IA categoriza a resposta em uma das ações possíveis e retorna JSON estruturado</li>
-      <li>Sistema atualiza <code>TB_TRATAMENTO_EVENTO</code> e <code>TB_EVENTO_ACAO</code> com o resultado</li>
-    </ol>
-  </div>
-  <div class="doc-divider"></div>
-  <div class="doc-block">
-    <div class="doc-h"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>Ações possíveis da IA ao analisar a resposta</div>
-    <table class="doc-table">
-      <tr><th>Ação</th><th>Quando ocorre</th><th>O que o sistema faz no banco</th></tr>
-      <tr><td><code>RotaEncerrada</code></td><td>Motorista confirma que já finalizou</td><td>Fecha tratamento (Status=2), registra DataFim</td></tr>
-      <tr><td><code>EncerrarRota</code></td><td>Motorista pede para a Laisa encerrar por ele</td><td>UPDATE em TB_ROTA: CdSituacao=3, DtChegadaRealizada=GETDATE(), NmUsuarioFechamento='Laisa IA'</td></tr>
-      <tr><td><code>NaoEncerrarRota</code></td><td>Problema no app, mensagem ambígua ou aguardando cliente</td><td>Mantém Status=1, registra observação e segue monitorando</td></tr>
-      <tr><td><code>AguardarFimRota</code></td><td>App exibindo "Finalizando rota"</td><td>Orienta motorista a deixar app aberto, mantém tratamento ativo</td></tr>
-      <tr><td><code>AvisarTorre</code></td><td>Problema mecânico (quebrado, pneu furado)</td><td>Muda Status=3, registra ação para equipe da Torre acompanhar</td></tr>
+      <tr><th>Ação</th><th>O que o sistema faz</th></tr>
+      <tr><td><code>RotaEncerrada</code></td><td>Motorista confirma que finalizou → fecha tratamento</td></tr>
+      <tr><td><code>EncerrarRota</code></td><td>Motorista pede para Laisa encerrar → UPDATE TB_ROTA com NmUsuarioFechamento='Laisa IA'</td></tr>
+      <tr><td><code>NaoEncerrarRota</code></td><td>Problema no app ou aguardando cliente → mantém monitoramento</td></tr>
+      <tr><td><code>AguardarFimRota</code></td><td>App processando → orienta motorista a manter app aberto</td></tr>
+      <tr><td><code>AvisarTorre</code></td><td>Problema mecânico → registra para equipe da Torre</td></tr>
     </table>
   </div>
   <div class="doc-divider"></div>
   <div class="doc-block">
     <div class="doc-h"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>Valor para o time comercial</div>
-    <p class="doc-p"><strong>Problema que resolve:</strong> Motoristas frequentemente esquecem de encerrar a viagem no app após realizar as entregas. Isso deixa a rota com situação incorreta no TMS, prejudicando KPIs, relatórios de produtividade e o faturamento por rota concluída do cliente.</p>
-    <p class="doc-p"><strong>Como apresentar:</strong> O fluxo é 100% automático, roda dentro do horário comercial, usa IA generativa para personalizar a comunicação com cada motorista pelo nome e pode até <strong>encerrar a rota remotamente</strong> caso o motorista solicite. Toda interação — mensagem enviada, resposta recebida e decisão da IA — é rastreada e auditável no banco de dados do cliente.</p>
-    <p class="doc-p"><strong>Diferencial técnico:</strong> O uso de Redis garante que nenhuma mensagem seja processada em duplicata. A flag <code>@ModoTeste</code> permite validar o fluxo em ambiente de produção real sem impactar motoristas.</p>
+    <p class="doc-p"><strong>Problema que resolve:</strong> Motoristas esquecem de encerrar a viagem no app, deixando a rota com situação incorreta no TMS e prejudicando KPIs e faturamento do cliente.</p>
+    <p class="doc-p"><strong>Diferencial:</strong> 100% automático, IA personaliza cada mensagem pelo nome do motorista, pode encerrar a rota remotamente, e toda interação é rastreada e auditável no banco.</p>
   </div>
 </div>`;
 
+const DOC_ENTREGAS_DIA = `<div class="doc-inner">
+  <div class="doc-block">
+    <div class="doc-h"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>Objetivo do produto</div>
+    <p class="doc-p">Automatiza o acompanhamento diário de entregas previstas, cobrando as transportadoras sobre documentos em aberto ao longo do dia e realizando o fechamento ao final. Elimina a necessidade de cobrança manual pela equipe interna.</p>
+  </div>
+  <div class="doc-divider"></div>
+  <div class="doc-block">
+    <div class="doc-h"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>Fluxos que compõem este produto</div>
+    <div class="deps-box">
+      <div class="dep-item"><span class="dep-code">AG7.0</span><div class="dep-desc"><strong>Entregas do dia</strong> — Fluxo principal. Roda em 4 horários fixos: <strong>08h, 12h, 18h e 23h30</strong>. Consulta notas fiscais com previsão de entrega para o dia, gera planilha por transportadora/filial e envia e-mail de cobrança + WhatsApp via Laisa. Registra cada envio no MongoDB com ID rastreável embutido no e-mail.</div></div>
+      <div class="dep-item"><span class="dep-code">AG5.0</span><div class="dep-desc"><strong>Followup email</strong> — Roda a cada hora. Verifica e-mails enviados há mais de 3 dias sem resposta e com menos de 3 tentativas. Checa a caixa Gmail da Laisa; se não houve retorno, reenvia a cobrança automaticamente.</div></div>
+      <div class="dep-item"><span class="dep-code">AG5.2</span><div class="dep-desc"><strong>Processamento de arquivos</strong> — Ativado por trigger do Outlook a cada minuto. Identifica respostas das transportadoras pelo ID embutido no e-mail, aciona IA para classificar o anexo recebido (canhoto, ocorrência de atraso ou tabela de prazo) e atualiza o TMS automaticamente.</div></div>
+    </div>
+  </div>
+  <div class="doc-divider"></div>
+  <div class="doc-block">
+    <div class="doc-h"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>Banco de dados (AG7.0)</div>
+    <p class="doc-p">Banco PostgreSQL do TMS da empresa. Tabelas principais consultadas:</p>
+    <table class="doc-table">
+      <tr><th>Tabela</th><th>Para que serve</th></tr>
+      <tr><td><code>conhecimento</code></td><td>Conhecimentos de transporte — base principal da consulta</td></tr>
+      <tr><td><code>nota_fiscal</code> / <code>nota_fiscal_conhecimento</code></td><td>Notas fiscais vinculadas ao conhecimento</td></tr>
+      <tr><td><code>empresa</code></td><td>Dados da empresa embarcadora</td></tr>
+      <tr><td><code>filial_transportadora</code> / <code>transportadora</code></td><td>Transportadora e filial responsável pela entrega</td></tr>
+      <tr><td><code>localizacao</code> / <code>cidade</code></td><td>Origem e destino do frete</td></tr>
+      <tr><td><code>modal</code></td><td>Modalidade do transporte</td></tr>
+      <tr><td><code>grupo_usuario</code> / <code>grupo_usuario_contato</code></td><td>Contatos (e-mail e WhatsApp) dos responsáveis por transportadora</td></tr>
+    </table>
+    <p class="doc-p" style="margin-top:10px">MongoDB (<code>followEmails</code>) armazena cada e-mail enviado com status, tentativas, prazo e resposta. <code>followHistoricoConversa</code> guarda o histórico das conversas da Laisa.</p>
+  </div>
+  <div class="doc-divider"></div>
+  <div class="doc-block">
+    <div class="doc-h"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>Consulta principal (AG7.0)</div>
+    <p class="doc-p">Busca notas fiscais com previsão de entrega para o dia corrente, agrupando por transportadora e filial. Campos retornados:</p>
+    <table class="doc-table">
+      <tr><th>Campo</th><th>Significado</th></tr>
+      <tr><td><code>Número nota fiscal</code></td><td>Número da NF emitida pelo embarcador</td></tr>
+      <tr><td><code>CNPJ / Razão emissor</code></td><td>Identificação do emitente da nota</td></tr>
+      <tr><td><code>Chave acesso</code></td><td>Chave NFe para rastreio</td></tr>
+      <tr><td><code>Data emissão</code></td><td>Quando a nota foi emitida</td></tr>
+      <tr><td><code>UF origem / destino</code></td><td>Estados de saída e chegada do frete</td></tr>
+      <tr><td><code>Transportadora / CNPJ filial</code></td><td>Responsável pelo transporte e sua filial</td></tr>
+      <tr><td><code>Previsão entrega</code></td><td>Data prevista para a entrega ao destinatário</td></tr>
+      <tr><td><code>Modal</code></td><td>Tipo de transporte (rodoviário, aéreo etc.)</td></tr>
+    </table>
+  </div>
+  <div class="doc-divider"></div>
+  <div class="doc-block">
+    <div class="doc-h"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>Valor para o time comercial</div>
+    <p class="doc-p"><strong>Problema que resolve:</strong> Equipes internas perdem horas cobrando transportadoras manualmente sobre entregas do dia. Respostas ficam perdidas na caixa de e-mail sem rastreamento.</p>
+    <p class="doc-p"><strong>Como vender:</strong> O produto dispara cobranças em 4 momentos do dia, reforça automaticamente quem não respondeu, lê e classifica os anexos enviados pela transportadora (canhoto, ocorrência, prazo) e atualiza o TMS — tudo sem intervenção humana. O cliente tem visibilidade total do que foi cobrado, quando e qual foi a resposta.</p>
+  </div>
+</div>`;
+
+const DOC_SEM_COLETA = `<div class="doc-inner">
+  <div class="doc-block">
+    <div class="doc-h"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>Objetivo do produto</div>
+    <p class="doc-p">Cobra automaticamente transportadoras que possuem documentos sem a ocorrência de coleta (ocorrência 00) registrada. Garante que o TMS reflita a realidade operacional desde a saída da mercadoria, não apenas na entrega.</p>
+  </div>
+  <div class="doc-divider"></div>
+  <div class="doc-block">
+    <div class="doc-h"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>Fluxos que compõem este produto</div>
+    <div class="deps-box">
+      <div class="dep-item"><span class="dep-code">AG6.0</span><div class="dep-desc"><strong>Notas sem coleta</strong> — Fluxo principal. Roda <strong>uma vez por mês, no dia 5 às 07h10</strong>. Busca notas fiscais sem ocorrência de coleta registrada, envia e-mail com planilha anexa para a transportadora e consolidado interno para a equipe. Reforça via WhatsApp quando há celular cadastrado.</div></div>
+      <div class="dep-item"><span class="dep-code">AG5.0</span><div class="dep-desc"><strong>Followup email</strong> — Roda a cada hora. Verifica e-mails enviados sem resposta e reenvia a cobrança automaticamente após o prazo configurado.</div></div>
+      <div class="dep-item"><span class="dep-code">AG5.2</span><div class="dep-desc"><strong>Processamento de arquivos</strong> — Ativado por trigger do Outlook. Identifica e classifica os anexos enviados pela transportadora em resposta (EDI de coleta, ocorrência ou prazo) e atualiza o TMS.</div></div>
+    </div>
+  </div>
+  <div class="doc-divider"></div>
+  <div class="doc-block">
+    <div class="doc-h"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>Consulta principal (AG6.0)</div>
+    <p class="doc-p">Busca documentos ativos no TMS que <strong>não possuem ocorrência 00</strong> (coleta) registrada. Campos principais:</p>
+    <table class="doc-table">
+      <tr><th>Campo</th><th>Significado</th></tr>
+      <tr><td><code>Número / Série nota fiscal</code></td><td>Identificação do documento fiscal</td></tr>
+      <tr><td><code>CNPJ / Razão emissor</code></td><td>Quem emitiu a nota</td></tr>
+      <tr><td><code>Chave acesso</code></td><td>Chave NFe para rastreio</td></tr>
+      <tr><td><code>Data emissão</code></td><td>Quando a nota foi emitida</td></tr>
+      <tr><td><code>UF origem / destino</code></td><td>Estados de saída e chegada</td></tr>
+      <tr><td><code>Transportadora / CNPJ filial</code></td><td>Responsável pela coleta que não foi registrada</td></tr>
+      <tr><td><code>Modal</code></td><td>Tipo de transporte</td></tr>
+      <tr><td><code>Previsão entrega</code></td><td>Data prevista — auxilia na priorização</td></tr>
+    </table>
+    <p class="doc-p" style="margin-top:10px">Contatos buscados via <code>grupo_usuario</code> + <code>grupo_usuario_contato</code> no PostgreSQL. Registros gravados em <span class="tag tag-mongo">MongoDB followEmails</span> e <span class="tag tag-mongo">followHistoricoConversa</span>.</p>
+  </div>
+  <div class="doc-divider"></div>
+  <div class="doc-block">
+    <div class="doc-h"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>Valor para o time comercial</div>
+    <p class="doc-p"><strong>Problema que resolve:</strong> Notas fiscais que saíram do embarcador mas não tiveram a coleta confirmada pela transportadora geram incerteza operacional: o cliente não sabe se a mercadoria foi coletada.</p>
+    <p class="doc-p"><strong>Como vender:</strong> O produto roda mensalmente de forma automática, identifica exatamente quais transportadoras estão com documentos sem EDI de coleta e cobra por e-mail + WhatsApp, com planilha detalhada. A transportadora pode responder com o EDI e o sistema processa automaticamente.</p>
+  </div>
+</div>`;
+
+const DOC_EM_ATRASO = `<div class="doc-inner">
+  <div class="doc-block">
+    <div class="doc-h"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>Objetivo do produto</div>
+    <p class="doc-p">Cobra automaticamente transportadoras sobre entregas com prazo vencido nos últimos 30 dias que ainda não foram concluídas no sistema, solicitando posição atualizada de cada documento.</p>
+  </div>
+  <div class="doc-divider"></div>
+  <div class="doc-block">
+    <div class="doc-h"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>Fluxos que compõem este produto</div>
+    <div class="deps-box">
+      <div class="dep-item"><span class="dep-code">AG3.0</span><div class="dep-desc"><strong>Notas em atraso</strong> — Fluxo principal. Roda a <strong>cada 5 dias às 09h30</strong>. Busca entregas com prazo vencido nos últimos 30 dias sem confirmação de recebimento, envia e-mail com planilha + destaque do documento com maior atraso, e consolida resumo interno para a equipe.</div></div>
+      <div class="dep-item"><span class="dep-code">AG5.0</span><div class="dep-desc"><strong>Followup email</strong> — Roda a cada hora. Verifica e-mails sem resposta e reenvia a cobrança automaticamente após o prazo configurado (máx. 3 tentativas).</div></div>
+      <div class="dep-item"><span class="dep-code">AG5.2</span><div class="dep-desc"><strong>Processamento de arquivos</strong> — Ativado por trigger do Outlook. Classifica anexos recebidos (comprovante de entrega, ocorrência de atraso ou tabela de prazo) e atualiza o TMS automaticamente.</div></div>
+    </div>
+  </div>
+  <div class="doc-divider"></div>
+  <div class="doc-block">
+    <div class="doc-h"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>Consulta principal (AG3.0)</div>
+    <p class="doc-p">Busca conhecimentos com <strong>todas</strong> as condições simultaneamente:</p>
+    <table class="doc-table">
+      <tr><th>Filtro</th><th>Significado</th></tr>
+      <tr><td><code>dt_emissao &gt;= hoje - 30 dias</code></td><td>Apenas entregas emitidas no último mês</td></tr>
+      <tr><td><code>dt_previsao_entrega &lt; hoje</code></td><td>Prazo de entrega já venceu</td></tr>
+      <tr><td><code>nf.dt_recebimento IS NULL</code></td><td>Nota ainda não foi recebida/confirmada no destino</td></tr>
+      <tr><td><code>nf.situacao = 2</code></td><td>Nota fiscal ativa no sistema</td></tr>
+      <tr><td><code>NOT EXISTS evento_ocorrencia</code></td><td>Sem ocorrência de entrega registrada — confirma que está em aberto</td></tr>
+    </table>
+    <p class="doc-p" style="margin-top:10px">Campos retornados: NF, CNPJ/razão emissor, chave acesso, data emissão, UF origem/destino, transportadora/filial, modal e previsão de entrega.</p>
+  </div>
+  <div class="doc-divider"></div>
+  <div class="doc-block">
+    <div class="doc-h"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>Valor para o time comercial</div>
+    <p class="doc-p"><strong>Problema que resolve:</strong> Entregas em atraso que ficam sem posicionamento prejudicam o cliente final e geram reclamações. A equipe interna perde tempo rastreando manualmente cada ocorrência.</p>
+    <p class="doc-p"><strong>Como vender:</strong> O produto roda a cada 5 dias, identifica automaticamente todos os documentos atrasados por transportadora, destaca o de maior atraso no e-mail para gerar urgência, e já dispara cobrança diretamente para o contato responsável. O cliente tem visibilidade total com o consolidado interno gerado automaticamente.</p>
+  </div>
+</div>`;
+
+const DOC_SEM_CANHOTO = `<div class="doc-inner">
+  <div class="doc-block">
+    <div class="doc-h"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>Objetivo do produto</div>
+    <p class="doc-p">Cobra automaticamente transportadoras que possuem entregas realizadas mas ainda não enviaram o comprovante de entrega (canhoto). Notifica também a equipe interna com um resumo consolidado de todos os canhotos pendentes.</p>
+  </div>
+  <div class="doc-divider"></div>
+  <div class="doc-block">
+    <div class="doc-h"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>Fluxos que compõem este produto</div>
+    <div class="deps-box">
+      <div class="dep-item"><span class="dep-code">AG4.0</span><div class="dep-desc"><strong>Canhoto</strong> — Fluxo principal. Roda <strong>toda segunda-feira às 07h</strong>. Busca entregas realizadas nos últimos 30 dias com ocorrência de entrega (entreganota ou finalizartransporte) mas sem anexo de canhoto. Envia e-mail com planilha para a transportadora e resumo consolidado para o embarcador.</div></div>
+      <div class="dep-item"><span class="dep-code">AG5.0</span><div class="dep-desc"><strong>Followup email</strong> — Roda a cada hora. Verifica quais cobranças ainda não tiveram resposta e reenvia automaticamente (máx. 3 tentativas).</div></div>
+      <div class="dep-item"><span class="dep-code">AG5.2</span><div class="dep-desc"><strong>Processamento de arquivos</strong> — Ativado por trigger do Outlook. Quando a transportadora responde com o canhoto em anexo, a IA identifica, extrai os dados e registra o comprovante no TMS automaticamente.</div></div>
+    </div>
+  </div>
+  <div class="doc-divider"></div>
+  <div class="doc-block">
+    <div class="doc-h"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>Consulta principal (AG4.0)</div>
+    <p class="doc-p">Busca entregas com <strong>ocorrência de entrega registrada mas sem anexo de canhoto</strong>:</p>
+    <table class="doc-table">
+      <tr><th>Tabela / Filtro</th><th>Significado</th></tr>
+      <tr><td><code>evento_ocorrencia</code></td><td>Eventos de entrega registrados no TMS</td></tr>
+      <tr><td><code>ocorrencia_acao_ocorrencia</code></td><td>Tipo de ação: <code>entreganota</code> ou <code>finalizartransporte</code> — confirma que houve entrega</td></tr>
+      <tr><td><code>evento_ocorrencia_anexo</code></td><td>Tabela de anexos — filtro <code>eoa.anexo IS NULL</code> identifica quem não enviou o canhoto</td></tr>
+      <tr><td><code>dt_emissao &gt;= hoje - 30 dias</code></td><td>Janela de 30 dias para evitar reprocessar canhotos muito antigos</td></tr>
+    </table>
+    <p class="doc-p" style="margin-top:10px">Campos adicionais retornados: NF, CNPJ/razão emissor, chave acesso, transportadora/filial, data da ocorrência de entrega, tipo e código da ocorrência, observação do evento.</p>
+  </div>
+  <div class="doc-divider"></div>
+  <div class="doc-block">
+    <div class="doc-h"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>Valor para o time comercial</div>
+    <p class="doc-p"><strong>Problema que resolve:</strong> Canhotos são documentos legais que comprovam a entrega. Sem eles, o embarcador não tem evidência jurídica da conclusão do frete — o que pode gerar disputas com clientes e seguradoras.</p>
+    <p class="doc-p"><strong>Como vender:</strong> O produto roda semanalmente (toda segunda), identifica todos os canhotos pendentes por transportadora, cobra via e-mail com planilha e envia resumo ao cliente com o que foi cobrado. Quando a transportadora responde com o arquivo, o sistema lê, valida e registra no TMS automaticamente — zero trabalho manual.</p>
+  </div>
+</div>`;
+
+const DOC_TEMPERATURA = `<div class="doc-inner">
+  <div class="doc-block">
+    <div class="doc-h"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>Objetivo do fluxo</div>
+    <p class="doc-p">O fluxo <strong>Análise de Temperatura V2</strong> monitora em tempo real a eficiência de temperatura dos veículos refrigerados em rota. Quando detecta leituras irregulares consecutivas, a IA <strong>Laisa</strong> notifica o motorista via WhatsApp para verificar o baú e reportar o que está vendo — podendo receber a resposta em texto, áudio ou foto. O fluxo também verifica continuamente se a temperatura se normalizou e encerra o tratamento automaticamente quando isso ocorre.</p>
+    <p class="doc-p">O fluxo roda a <strong>cada 10 minutos</strong> dentro do horário <strong>05h–19h</strong>. Um segundo agendador paralelo verifica no mesmo intervalo se as rotas já em tratamento se normalizaram.</p>
+  </div>
+  <div class="doc-divider"></div>
+  <div class="doc-block">
+    <div class="doc-h"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>Banco de dados</div>
+    <p class="doc-p">Credencial: <code>Torre A</code> — banco <code>HBMDM_SAOSALVADOR</code>, schema <code>OPMDM</code></p>
+    <table class="doc-table">
+      <tr><th>Tabela</th><th>Para que serve no fluxo</th></tr>
+      <tr><td><code>TB_ROTA</code></td><td>Dados da rota: situação, motorista, placa e eficiência atual de temperatura</td></tr>
+      <tr><td><code>TB_MOTORISTA</code></td><td>Nome e telefone do motorista para envio do WhatsApp</td></tr>
+      <tr><td><code>TB_DISPOSITIVO</code></td><td>Dispositivo móvel associado à rota</td></tr>
+      <tr><td><code>TB_VEICULO</code> / <code>TB_TIPO_VEICULO</code></td><td>Dados do veículo e tipo (identifica se é refrigerado)</td></tr>
+      <tr><td><code>TB_HISTORICO_TEMPERATURA_ROTA</code></td><td>Histórico de leituras de temperatura — fonte principal do indicador de irregularidade</td></tr>
+      <tr><td><code>TB_TRATAMENTO_EVENTO</code></td><td>Abre e controla cada tratamento de temperatura ativo (idempotência)</td></tr>
+      <tr><td><code>TB_EVENTO_ACAO</code></td><td>Registra cada ação tomada dentro do tratamento</td></tr>
+      <tr><td><code>TB_MENSAGEM</code></td><td>Armazena todas as mensagens trocadas entre a Laisa e o motorista</td></tr>
+    </table>
+  </div>
+  <div class="doc-divider"></div>
+  <div class="doc-block">
+    <div class="doc-h"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>Consulta 1 — Buscar Rotas com temperatura irregular</div>
+    <p class="doc-p">Roda a cada 10 min. Busca rotas que atendem <strong>todos</strong> os critérios:</p>
+    <table class="doc-table">
+      <tr><th>Filtro</th><th>Significado</th></tr>
+      <tr><td><code>VlEficienciaAtual &lt;= 55</code></td><td>Eficiência de temperatura abaixo do limite aceitável (55%)</td></tr>
+      <tr><td><code>CdSituacao = 2</code></td><td>Rota em andamento — motorista está em campo</td></tr>
+      <tr><td><code>TOP 5 IdTemperaturaCorreta = 0</code></td><td>As últimas 5 leituras consecutivas estão com temperatura incorreta — evita falso positivo por leitura pontual</td></tr>
+      <tr><td><code>NrTelefone IS NOT NULL</code></td><td>Motorista tem telefone cadastrado para receber o WhatsApp</td></tr>
+      <tr><td><code>te.CdRota IS NULL</code></td><td>Não há tratamento ativo em aberto para essa rota — evita duplicidade</td></tr>
+      <tr><td><code>CdUnidadeNegocio IN ('160')</code></td><td>Filtro de unidade de negócio configurada para o cliente</td></tr>
+      <tr><td><code>CdPlacaVeiculo IN (...)</code></td><td>Lista de placas monitoradas definida no fluxo para o cliente</td></tr>
+    </table>
+    <p class="doc-p" style="margin-top:10px">Campos retornados: <code>CdUnidadeNegocio</code>, <code>CdRota</code>, <code>NmMotorista</code>, <code>NrTelefone</code>, <code>NmRota</code>, <code>CdPlacaVeiculo</code>, <code>VlEficienciaAtual</code>, <code>VlTemperaturaMinima</code> e <code>VlTemperaturaMaxima</code> (máximas das últimas leituras).</p>
+  </div>
+  <div class="doc-divider"></div>
+  <div class="doc-block">
+    <div class="doc-h"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>Consulta 2 — Verificar normalização (loop paralelo)</div>
+    <p class="doc-p">Roda em paralelo a cada 10 min sobre tratamentos já em andamento. Verifica se a temperatura voltou ao normal:</p>
+    <table class="doc-table">
+      <tr><th>Campo / Filtro</th><th>Significado</th></tr>
+      <tr><td><code>Task = 'Tratamento de temperatura'</code> + <code>Status = 1</code></td><td>Busca apenas tratamentos de temperatura ainda abertos</td></tr>
+      <tr><td><code>StatusTemperatura</code> (calculado)</td><td><code>REGULAR</code> = indicador voltou ao normal · <code>IRREGULAR</code> = problema persiste</td></tr>
+      <tr><td><code>QtdNotificacao</code></td><td>Quantas vezes o motorista já foi notificado — controla a cadência de reenvio (1ª, 2ª, 3ª, 4ª notificação)</td></tr>
+      <tr><td><code>DtUltimaMsg Laisa IA</code></td><td>Data da última mensagem enviada — evita spam de notificações</td></tr>
+    </table>
+  </div>
+  <div class="doc-divider"></div>
+  <div class="doc-block">
+    <div class="doc-h"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>IA Laisa — Multimodal (texto, áudio e imagem)</div>
+    <p class="doc-p">A Laisa envia mensagem personalizada via <strong>UAZAPI</strong> (WhatsApp) informando que identificou temperatura irregular e pedindo que o motorista verifique o baú. O motorista pode responder de 3 formas:</p>
+    <table class="doc-table">
+      <tr><th>Tipo de resposta</th><th>Como o fluxo processa</th></tr>
+      <tr><td><strong>Texto</strong></td><td>A IA lê diretamente e categoriza a resposta</td></tr>
+      <tr><td><strong>Áudio</strong></td><td>Baixa o arquivo via UAZAPI e transcreve com <strong>Groq Whisper large-v3</strong> antes de analisar</td></tr>
+      <tr><td><strong>Imagem</strong></td><td>Baixa a imagem e a IA interpreta visualmente a leitura de temperatura no painel do baú</td></tr>
+    </table>
+    <p class="doc-p" style="margin-top:8px">Após analisar, a IA categoriza em uma das ações possíveis:</p>
+    <table class="doc-table">
+      <tr><th>Categoria</th><th>O que o sistema faz</th></tr>
+      <tr><td><code>Normalizado</code></td><td>Encerra o tratamento (Status=2), registra DataFim e observação</td></tr>
+      <tr><td><code>Escalado para torre</code></td><td>Avisa a equipe da Torre via WhatsApp para intervenção humana</td></tr>
+      <tr><td><code>Fora do escopo</code></td><td>Resposta não relacionada — encaminha para equipe da Torre</td></tr>
+      <tr><td><code>Em monitoramento</code></td><td>Problema identificado mas ainda sendo acompanhado — mantém tratamento ativo</td></tr>
+    </table>
+  </div>
+  <div class="doc-divider"></div>
+  <div class="doc-block">
+    <div class="doc-h"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>Valor para o time comercial</div>
+    <p class="doc-p"><strong>Problema que resolve:</strong> Veículos refrigerados com temperatura fora do range correto podem causar perda de carga, multas sanitárias e reclamações de clientes. Sem monitoramento ativo, o problema só é descoberto na entrega — tarde demais.</p>
+    <p class="doc-p"><strong>Como vender:</strong> O fluxo atua como um fiscal de temperatura 24/7, detectando anomalias em até 10 minutos e acionando o próprio motorista para verificar e reportar. A IA entende texto, áudio e foto, então o motorista não precisa digitar nada — pode falar ou tirar uma foto do painel. Toda a cadeia de eventos (alerta, resposta, decisão) é rastreada e auditável. Se o problema persistir, a equipe da Torre é acionada automaticamente.</p>
+  </div>
+</div>`;
+
+const DOC_INICIO_ROTA = `<div class="doc-inner">
+  <div class="doc-block">
+    <div class="doc-h"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>Objetivo do fluxo</div>
+    <p class="doc-p">O fluxo <strong>Início de Rota</strong> detecta motoristas que deveriam ter saído — a partida prevista já passou — mas ainda não iniciaram a rota no sistema. A IA <strong>Laisa</strong> notifica o motorista via WhatsApp para acionar o início, evitando que rotas fiquem abertas sem partida registrada e comprometendo os indicadores operacionais do cliente.</p>
+    <p class="doc-p">O fluxo é disparado por outro workflow (trigger externo), sem agendamento fixo próprio.</p>
+    <p class="doc-p"><strong>Atenção:</strong> nome da empresa, banco de dados e OID da empresa variam conforme o cliente implantado — a lógica do fluxo é a mesma para todos.</p>
+  </div>
+  <div class="doc-divider"></div>
+  <div class="doc-block">
+    <div class="doc-h"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>Banco de dados</div>
+    <p class="doc-p">Banco configurado por cliente — ex: <code>HBMDM_[EMPRESA]</code>, schema <code>OPMDM</code></p>
+    <table class="doc-table">
+      <tr><th>Tabela</th><th>Para que serve</th></tr>
+      <tr><td><code>TB_ROTA</code></td><td>Dados da rota: situação, motorista, placa, horário previsto de partida</td></tr>
+      <tr><td><code>TB_MOTORISTA</code></td><td>Nome e telefone do motorista</td></tr>
+      <tr><td><code>TB_UNIDADE_NEGOCIO</code></td><td>Unidade de negócio associada à rota</td></tr>
+      <tr><td><code>TB_TRATAMENTO_EVENTO</code></td><td>Abre e controla o tratamento de início de rota (idempotência)</td></tr>
+      <tr><td><code>TB_EVENTO_ACAO</code></td><td>Registra cada ação dentro do tratamento</td></tr>
+      <tr><td><code>TB_MENSAGEM</code></td><td>Armazena todas as mensagens trocadas com o motorista</td></tr>
+    </table>
+  </div>
+  <div class="doc-divider"></div>
+  <div class="doc-block">
+    <div class="doc-h"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>Consulta principal — Buscar Rotas</div>
+    <p class="doc-p">Busca rotas que atendem <strong>todos</strong> os critérios ao mesmo tempo:</p>
+    <table class="doc-table">
+      <tr><th>Filtro</th><th>Significado</th></tr>
+      <tr><td><code>CdSituacao = 1</code></td><td>Rota criada mas ainda não iniciada pelo motorista</td></tr>
+      <tr><td><code>IdExpurgada = 0</code></td><td>Rota não foi cancelada ou expurgada</td></tr>
+      <tr><td><code>DtRota = hoje</code></td><td>A rota é do dia corrente</td></tr>
+      <tr><td><code>DtPartidaPrevista &lt; GETDATE()</code></td><td>O horário previsto de saída já passou</td></tr>
+      <tr><td><code>DtPartidaPrevista IS NOT NULL</code></td><td>Rota tem horário de partida definido</td></tr>
+      <tr><td><code>NrTelefone IS NOT NULL</code></td><td>Motorista tem telefone para receber o WhatsApp</td></tr>
+      <tr><td><code>NOT EXISTS TB_ROTA (mesma placa, CdSituacao=2)</code></td><td>A placa não está em outra rota já em andamento</td></tr>
+      <tr><td><code>NOT EXISTS TB_TRATAMENTO_EVENTO (Task='Inicio de Rota')</code></td><td>Motorista ainda não foi notificado — evita reenvio duplicado</td></tr>
+    </table>
+  </div>
+  <div class="doc-divider"></div>
+  <div class="doc-block">
+    <div class="doc-h"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>IA Laisa — Notificação e resposta</div>
+    <p class="doc-p">A Laisa envia mensagem personalizada via <strong>UAZAPI</strong> solicitando que o motorista inicie a rota. O motorista pode responder em <strong>texto ou áudio</strong> — o áudio é transcrito automaticamente via <strong>Groq Whisper large-v3</strong>.</p>
+    <p class="doc-p">Diferencial: a Laisa pode responder ao motorista também em <strong>áudio sintetizado via ElevenLabs</strong> — tornando a interação mais natural para quem está dirigindo.</p>
+    <p class="doc-p">Todo o histórico de mensagens é carregado da <code>TB_MENSAGEM</code> para que a IA tenha contexto completo da conversa antes de responder.</p>
+  </div>
+  <div class="doc-divider"></div>
+  <div class="doc-block">
+    <div class="doc-h"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>Valor para o time comercial</div>
+    <p class="doc-p"><strong>Problema que resolve:</strong> Motoristas que não iniciam a rota no horário previsto geram atraso em cadeia nas entregas, impactando SLA do cliente final e distorcendo os indicadores de pontualidade.</p>
+    <p class="doc-p"><strong>Como vender:</strong> O fluxo age automaticamente assim que o horário de partida vence, sem precisar de nenhuma intervenção da torre. A Laisa fala com o motorista pelo WhatsApp — por texto ou áudio — de forma natural, como se fosse um operador humano. Tudo rastreado e auditável.</p>
+  </div>
+</div>`;
+
+const DOC_SEQUENCIA = `<div class="doc-inner">
+  <div class="doc-block">
+    <div class="doc-h"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>Objetivo do fluxo</div>
+    <p class="doc-p">O fluxo <strong>Análise de Sequência de Rota</strong> detecta em tempo real quando um motorista realiza entregas fora da ordem planejada pelo roteirizador. Ao identificar a divergência, a IA <strong>Laisa</strong> notifica o motorista via WhatsApp para entender o motivo — e escala para a Torre nos casos de resposta evasiva ou problema interno.</p>
+    <p class="doc-p">Roda <strong>a cada hora</strong> entre <strong>05h e 19h</strong>. Também calcula um índice de eficiência da rota combinando tempo e distância percorrida.</p>
+    <p class="doc-p"><strong>Atenção:</strong> nome da empresa, banco de dados e OID da empresa variam conforme o cliente implantado — a lógica do fluxo é a mesma para todos.</p>
+  </div>
+  <div class="doc-divider"></div>
+  <div class="doc-block">
+    <div class="doc-h"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>Banco de dados</div>
+    <p class="doc-p">Banco configurado por cliente — ex: <code>HBMDM_[EMPRESA]</code>, schema <code>OPMDM</code></p>
+    <table class="doc-table">
+      <tr><th>Tabela</th><th>Para que serve</th></tr>
+      <tr><td><code>TB_ENTREGA</code></td><td>Entregas da rota — fonte principal: <code>IdSequencia</code> (planejada) vs <code>IdSequenciaRealizada</code> (executada)</td></tr>
+      <tr><td><code>TB_ROTA</code></td><td>Dados de performance: tempo e distância prevista vs realizada</td></tr>
+      <tr><td><code>TB_MOTORISTA</code></td><td>Nome e telefone do motorista</td></tr>
+      <tr><td><code>TB_TRATAMENTO_EVENTO</code></td><td>Abre e controla o tratamento de sequência divergente</td></tr>
+      <tr><td><code>TB_EVENTO_ACAO</code></td><td>Registra cada ação e tentativa de notificação</td></tr>
+      <tr><td><code>TB_MENSAGEM</code></td><td>Histórico de mensagens trocadas com o motorista</td></tr>
+    </table>
+  </div>
+  <div class="doc-divider"></div>
+  <div class="doc-block">
+    <div class="doc-h"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>Consulta principal — Busca Entregas Divergentes</div>
+    <p class="doc-p">Busca entregas realizadas onde a sequência executada difere da planejada (<code>IdSequenciaCorreta = 0</code>), e calcula métricas de performance da rota:</p>
+    <table class="doc-table">
+      <tr><th>Campo / Cálculo</th><th>Significado</th></tr>
+      <tr><td><code>IdSequencia</code> vs <code>IdSequenciaRealizada</code></td><td>Sequência planejada pelo roteirizador vs sequência que o motorista realmente executou</td></tr>
+      <tr><td><code>QtEntregasDivergentes</code></td><td>Quantidade de pontos entregues fora de ordem</td></tr>
+      <tr><td><code>EficienciaTempo_Pct</code></td><td>Tempo previsto ÷ tempo realizado × 100 — mede se o motorista foi mais ou menos rápido que o planejado</td></tr>
+      <tr><td><code>EficienciaDistancia_Pct</code></td><td>Distância prevista ÷ distância realizada × 100 — detecta se rodou mais km que o necessário</td></tr>
+      <tr><td><code>IndiceEficiencia_Pct</code></td><td>Índice combinado: 60% tempo + 40% distância — classificação geral da rota</td></tr>
+      <tr><td><code>QualidadeDistancia</code></td><td>Valida integridade dos dados: detecta distâncias irreais, muito baixas ou divergentes em mais de 80%</td></tr>
+      <tr><td><code>TipoPerformance</code></td><td>Classifica como <code>MAIS_EFICIENTE</code>, <code>DENTRO_ESPERADO</code> ou abaixo do esperado</td></tr>
+    </table>
+  </div>
+  <div class="doc-divider"></div>
+  <div class="doc-block">
+    <div class="doc-h"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>IA Laisa — Notificação e ações possíveis</div>
+    <p class="doc-p">A Laisa notifica o motorista via <strong>UAZAPI</strong> em texto ou <strong>áudio via ElevenLabs</strong>. Pode também enviar um <strong>vídeo explicativo</strong> sobre a importância da sequência de entrega.</p>
+    <table class="doc-table">
+      <tr><th>Ação da IA</th><th>O que o sistema faz</th></tr>
+      <tr><td><code>INTERNO</code></td><td>Problema de ordem interna da operação → aciona equipe da Torre</td></tr>
+      <tr><td><code>RESPOSTA EVASIVA/OMISSA</code></td><td>Motorista não explica ou responde de forma vaga → aciona equipe da Torre</td></tr>
+      <tr><td>Justificativa aceita</td><td>Encerra tratamento (Status=2) com observação registrada</td></tr>
+    </table>
+  </div>
+  <div class="doc-divider"></div>
+  <div class="doc-block">
+    <div class="doc-h"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>Valor para o time comercial</div>
+    <p class="doc-p"><strong>Problema que resolve:</strong> Motoristas que desviam da rota planejada geram mais km rodado, atrasos em clientes subsequentes e distorção nos KPIs de roteirização. Sem visibilidade em tempo real, o gestor só percebe o problema no fechamento do dia.</p>
+    <p class="doc-p"><strong>Como vender:</strong> O fluxo monitora a sequência de entregas hora a hora, calcula o índice de eficiência real da rota e questiona o motorista automaticamente quando há desvio. A IA entende a justificativa, registra e escala se necessário — sem precisar de nenhum operador monitorando.</p>
+  </div>
+</div>`;
+
+const DOC_ENTREGA_ATRASADA = `<div class="doc-inner">
+  <div class="doc-block">
+    <div class="doc-h"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>Objetivo do fluxo</div>
+    <p class="doc-p">O fluxo <strong>Entrega Atrasada</strong> é um pós-processamento do fluxo de Sequência de Rota. Após a rota ser encerrada, ele verifica se motoristas que tiveram sequência divergente ainda não justificaram o desvio — e realiza novas cobranças até obter uma resposta ou esgotar as tentativas.</p>
+    <p class="doc-p">Roda <strong>a cada hora</strong> entre <strong>05h e 19h</strong>, com verificação de horário antes de executar.</p>
+    <p class="doc-p"><strong>Atenção:</strong> nome da empresa, banco de dados e OID da empresa variam conforme o cliente implantado — a lógica do fluxo é a mesma para todos.</p>
+  </div>
+  <div class="doc-divider"></div>
+  <div class="doc-block">
+    <div class="doc-h"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>Consulta principal — Buscar Rotas com sequências divergentes</div>
+    <p class="doc-p">Busca tratamentos abertos de sequência divergente cujas rotas já estão <strong>encerradas</strong> e o motorista ainda não respondeu:</p>
+    <table class="doc-table">
+      <tr><th>Filtro</th><th>Significado</th></tr>
+      <tr><td><code>te.Status = 1</code></td><td>Tratamento ainda em aberto — motorista não justificou</td></tr>
+      <tr><td><code>r.CdSituacao = 3</code></td><td>Rota já encerrada — motorista voltou mas não respondeu sobre o desvio</td></tr>
+      <tr><td><code>Task = 'Sequencia de entrega divergente'</code></td><td>Filtra apenas tratamentos originados pelo fluxo de sequência</td></tr>
+      <tr><td><code>MAX(IdTratamento) por CdRota</code></td><td>Garante que só o tratamento mais recente de cada rota seja processado</td></tr>
+      <tr><td><code>QtdNotificacao &lt; 3</code></td><td>Limite de 3 tentativas — após isso, encerra como escalado para a torre</td></tr>
+    </table>
+  </div>
+  <div class="doc-divider"></div>
+  <div class="doc-block">
+    <div class="doc-h"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>Cadência de notificações e escalada</div>
+    <table class="doc-table">
+      <tr><th>Situação</th><th>O que acontece</th></tr>
+      <tr><td><code>QtdNotificacao &lt; 3</code></td><td>Reenvia cobrança via WhatsApp com tom progressivo de urgência</td></tr>
+      <tr><td><code>QtdNotificacao &gt;= 3</code></td><td>Encerra tratamento com <code>Status=3</code> e <code>Etapa='Escalado para torre'</code></td></tr>
+      <tr><td>Resposta <code>INTERNO</code> ou <code>EVASIVA/OMISSA</code></td><td>IA aciona equipe da Torre imediatamente, independente do número de tentativas</td></tr>
+      <tr><td>Pode enviar vídeo</td><td>Quando a IA define <code>Etapa='enviado_video'</code>, envia material explicativo ao motorista</td></tr>
+    </table>
+    <p class="doc-p" style="margin-top:8px">Cada reenvio atualiza <code>QtdNotificacao</code> na <code>TB_TRATAMENTO_EVENTO</code> e insere novo registro em <code>TB_EVENTO_ACAO</code> e <code>TB_MENSAGEM</code>.</p>
+  </div>
+  <div class="doc-divider"></div>
+  <div class="doc-block">
+    <div class="doc-h"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>Valor para o time comercial</div>
+    <p class="doc-p"><strong>Problema que resolve:</strong> Desvios de sequência que não são justificados ficam sem registro de causa, impossibilitando análise de melhoria de roteirização e responsabilização do motorista.</p>
+    <p class="doc-p"><strong>Como vender:</strong> O fluxo garante que nenhum desvio de rota fique sem resposta — mesmo após a viagem encerrada. Reencaminha automaticamente até 3 vezes e escala para a Torre se necessário. O cliente tem rastreabilidade completa de cada ocorrência, com causa registrada e auditável.</p>
+  </div>
+</div>`;
+
+const DOC_ENTREGA_AGENDADA = `<div class="doc-inner">
+  <div class="doc-block">
+    <div class="doc-h"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>Objetivo do fluxo</div>
+    <p class="doc-p">O fluxo <strong>Entrega Agendada Não Realizada</strong> monitora entregas que possuem horário previsto (ETA) mas não foram baixadas pelo motorista no app após o prazo. A IA <strong>Laisa</strong> notifica o motorista via WhatsApp com até 4 cobranças progressivas, garantindo que toda entrega pendente seja justificada ou apontada no sistema.</p>
+    <p class="doc-p">Possui <strong>dois schedulers independentes</strong>: um para o disparo inicial e outro de recobrança a <strong>cada 15 minutos</strong>.</p>
+    <p class="doc-p"><strong>Atenção:</strong> nome da empresa, banco de dados e OID da empresa variam conforme o cliente implantado — a lógica do fluxo é a mesma para todos.</p>
+  </div>
+  <div class="doc-divider"></div>
+  <div class="doc-block">
+    <div class="doc-h"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>Banco de dados</div>
+    <p class="doc-p">Banco configurado por cliente — ex: <code>HBMDM_[EMPRESA]</code>, schema <code>OPMDM</code></p>
+    <table class="doc-table">
+      <tr><th>Tabela</th><th>Para que serve</th></tr>
+      <tr><td><code>TB_ENTREGA</code></td><td>Fonte principal: entregas com ETA definido e <code>IdEntregaRealizada IS NULL</code></td></tr>
+      <tr><td><code>TB_ROTA</code></td><td>Confirma que a rota já partiu (<code>DtPartidaRealizada IS NOT NULL</code>)</td></tr>
+      <tr><td><code>TB_MOTORISTA</code></td><td>Nome, telefone, status ativo e bloqueado do motorista</td></tr>
+      <tr><td><code>TB_CLIENTE</code></td><td>Nome, cidade, estado e bairro do destinatário da entrega</td></tr>
+      <tr><td><code>TB_TRATAMENTO_EVENTO</code></td><td>Controla cada entrega notificada — <code>CdParada</code> armazena <code>CdEntrega</code> como workaround</td></tr>
+      <tr><td><code>TB_EVENTO_ACAO</code></td><td>Registra cada notificação e recobrança enviada</td></tr>
+      <tr><td><code>TB_MENSAGEM</code></td><td>Armazena o texto de cada mensagem enviada ao motorista</td></tr>
+    </table>
+  </div>
+  <div class="doc-divider"></div>
+  <div class="doc-block">
+    <div class="doc-h"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>Consulta principal — Busca-Entregas-Previstas</div>
+    <p class="doc-p">Parâmetros configuráveis por cliente:</p>
+    <table class="doc-table">
+      <tr><th>Parâmetro</th><th>Significado</th></tr>
+      <tr><td><code>@ToleranciaMinutos</code></td><td>Margem após o ETA antes de disparar a notificação (ex: 30 min)</td></tr>
+      <tr><td><code>@JanelaDiasRetroativos</code></td><td>Quantos dias para trás buscar entregas não baixadas</td></tr>
+      <tr><td><code>@ToleranciaEntreRecobranca</code></td><td>Intervalo mínimo entre recobrança para o mesmo motorista</td></tr>
+    </table>
+    <p class="doc-p" style="margin-top:8px">Filtros aplicados na consulta:</p>
+    <table class="doc-table">
+      <tr><th>Filtro</th><th>Significado</th></tr>
+      <tr><td><code>IdEntregaRealizada IS NULL</code></td><td>Entrega ainda não foi apontada no app</td></tr>
+      <tr><td><code>DtPartidaRealizada IS NOT NULL</code></td><td>O caminhão já saiu — motorista está em campo</td></tr>
+      <tr><td><code>DtPrevistaETA + tolerância &lt; GETDATE()</code></td><td>ETA já venceu considerando a margem configurada</td></tr>
+      <tr><td><code>DtChegadaPrevista</code> dentro da janela</td><td>Entrega é do período configurado — evita buscar registros muito antigos</td></tr>
+      <tr><td><code>NOT EXISTS TB_TRATAMENTO_EVENTO</code></td><td>Idempotência — evita cobrar duas vezes a mesma entrega</td></tr>
+    </table>
+  </div>
+  <div class="doc-divider"></div>
+  <div class="doc-block">
+    <div class="doc-h"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>Cadência de mensagens — 4 templates progressivos</div>
+    <p class="doc-p">Antes de enviar, o fluxo verifica via <strong>UAZAPI</strong> se o número tem WhatsApp ativo. As mensagens são enviadas via <strong>GUPSHUP</strong> (template oficial WhatsApp Business), garantindo entrega mesmo em janelas de 24h:</p>
+    <table class="doc-table">
+      <tr><th>Notificação</th><th>Momento</th><th>Tom</th></tr>
+      <tr><td>MSG-0 (inicial)</td><td>Primeira vez — ETA venceu</td><td>Informativo e cordial</td></tr>
+      <tr><td>MSG-1 (1ª recobrança)</td><td><code>QtdNotificacao = 1</code></td><td>Reforço gentil</td></tr>
+      <tr><td>MSG-2 (2ª recobrança)</td><td><code>QtdNotificacao = 2</code></td><td>Tom mais urgente</td></tr>
+      <tr><td>MSG-3 (3ª recobrança)</td><td><code>QtdNotificacao = 3</code></td><td>Última chamada antes de escalar</td></tr>
+    </table>
+    <p class="doc-p" style="margin-top:8px">Após 4 notificações (<code>QtdNotificacao = 4</code>), o fluxo para de cobrar aquela entrega.</p>
+  </div>
+  <div class="doc-divider"></div>
+  <div class="doc-block">
+    <div class="doc-h"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>Valor para o time comercial</div>
+    <p class="doc-p"><strong>Problema que resolve:</strong> Entregas realizadas mas não apontadas no sistema geram divergências nos relatórios, cobranças indevidas de re-entrega e insatisfação do cliente final que não recebe atualização de status.</p>
+    <p class="doc-p"><strong>Como vender:</strong> O fluxo age a cada 15 minutos, com mensagens progressivas via canal oficial WhatsApp Business (GUPSHUP). Todos os parâmetros — tolerância, janela de busca, intervalo de recobrança — são configuráveis por cliente. É um produto replicável para qualquer empresa com operação de entrega, independente do porte.</p>
+  </div>
+</div>`;
+
+/* ═══════════════════════════════════════════════════════
+   DATA
+═══════════════════════════════════════════════════════ */
 const data = [
   {
-    label: 'Fluxos – N8N',
+    label: 'FLUXOS - TRACKING',
     items: [
-      { name: 'Análise de rota – Fim de Rota', doc: FIM_ROTA_DOC, docOpen: false }
+      { name: 'Análise de rota – Fim de Rota', tag: null, tagClass: null, doc: DOC_FIM_ROTA, docOpen: false },
+      { name: 'Análise de Temperatura V2', tag: null, tagClass: null, doc: DOC_TEMPERATURA, docOpen: false },
+      { name: 'Análise de Rota – Início de Rota', tag: null, tagClass: null, doc: DOC_INICIO_ROTA, docOpen: false },
+      { name: 'Análise de Sequência de Rota', tag: null, tagClass: null, doc: DOC_SEQUENCIA, docOpen: false },
+      { name: 'Entrega Atrasada', tag: null, tagClass: null, doc: DOC_ENTREGA_ATRASADA, docOpen: false },
+      { name: 'Entrega Agendada Não Realizada', tag: null, tagClass: null, doc: DOC_ENTREGA_AGENDADA, docOpen: false }
+    ]
+  },
+  {
+    label: 'Produtos TMS – Transportador / Motorista',
+    items: [
+      { name: 'Acompanhamento entregas do dia', tag: 'AG7.0 · AG5.0 · AG5.2', tagClass: 'tag-tms', doc: DOC_ENTREGAS_DIA, docOpen: false },
+      { name: 'Follow-up documentos sem ocorrência de coleta', tag: 'AG6.0 · AG5.0 · AG5.2', tagClass: 'tag-tms', doc: DOC_SEM_COLETA, docOpen: false },
+      { name: 'Follow-up entregas em atraso', tag: 'AG3.0 · AG5.0 · AG5.2', tagClass: 'tag-tms', doc: DOC_EM_ATRASO, docOpen: false },
+      { name: 'Follow-up entregas sem canhoto', tag: 'AG4.0 · AG5.0 · AG5.2', tagClass: 'tag-tms', doc: DOC_SEM_CANHOTO, docOpen: false }
     ]
   }
 ];
 
+/* ═══════════════════════════════════════════════════════
+   RENDER
+═══════════════════════════════════════════════════════ */
 function render() {
   const root = document.getElementById('sections-root');
   root.innerHTML = '';
-
   data.forEach(sec => {
     const secEl = document.createElement('div');
     secEl.className = 'section';
-
     const sl = document.createElement('div');
     sl.className = 'section-label';
     sl.textContent = sec.label;
     secEl.appendChild(sl);
-
     const rowsWrap = document.createElement('div');
     rowsWrap.className = 'rows-wrap';
-
     sec.items.forEach((item, idx) => {
       const itemWrap = document.createElement('div');
       itemWrap.className = 'item-wrap';
-
       const row = document.createElement('div');
       row.className = 'item-row';
-
       const num = document.createElement('span');
       num.className = 'item-num';
       num.textContent = idx + 1;
-
       const name = document.createElement('span');
       name.className = 'item-name';
       name.textContent = item.name;
-
       const actions = document.createElement('div');
       actions.className = 'item-actions';
-
+      if (item.tag) {
+        const tagEl = document.createElement('span');
+        tagEl.className = 'item-tag ' + item.tagClass;
+        tagEl.textContent = item.tag;
+        actions.appendChild(tagEl);
+      }
       const flagBtn = document.createElement('button');
       flagBtn.className = 'flag-btn' + (item.docOpen ? ' active' : '');
       flagBtn.innerHTML = flagIcon + ' Documentação';
-      flagBtn.addEventListener('click', () => {
-        item.docOpen = !item.docOpen;
-        render();
-      });
+      flagBtn.addEventListener('click', () => { item.docOpen = !item.docOpen; render(); });
       actions.appendChild(flagBtn);
-
       row.appendChild(num);
       row.appendChild(name);
       row.appendChild(actions);
       itemWrap.appendChild(row);
-
       const panel = document.createElement('div');
       panel.className = 'doc-panel' + (item.docOpen ? ' open' : '');
       panel.innerHTML = item.doc;
       itemWrap.appendChild(panel);
-
       rowsWrap.appendChild(itemWrap);
     });
-
     secEl.appendChild(rowsWrap);
     root.appendChild(secEl);
   });
 }
-
 render();
 </script>
 </body>
